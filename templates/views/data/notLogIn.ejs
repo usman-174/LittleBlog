@@ -1,0 +1,60 @@
+<%- include('../../partials/head.ejs')  %>
+<!-- START CODE HERE WITH BODY TAG -->
+
+<body>
+    
+    <%- include('../../partials/navbar.ejs') %>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 my-3 w-25 text-center">
+                <h2 class="text-danger text-uppercase">Login to Use the Blog App</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+      
+        <% if(count == 0){ %>
+            <div class="row nodata">
+                <div class="col-12">
+                    <h1>Currently there is not Data available to show</h1> 
+                </div>
+            </div>
+        <% } %> 
+
+        <div class="row">
+            <div class="col-md-12">
+                <% result.forEach(result => { %>
+                    <div class="col-md-4 my-3 mx-2">
+                        <div class="card ">
+                            <div class="card-body">
+                                 <span
+                style="
+                  color: rgb(153, 146, 147);
+                  padding-bottom: 20px;
+                  font-size: 12px;
+                "
+                >Created By :
+                <span style="color: rgb(94, 88, 88); text-transform: uppercase"
+                  ><%= result.by %>
+                </span></span>
+                                <h2 class="card-title  text-success text-uppercase"><%= result.title %> </h2>
+            
+                                <div class="card-subtitle text-muted my-2 "><%= result.date.toLocaleDateString() %> </div>
+                                <p class="card-text body text-left text-dark">" <i><%= result.description %></i> "</p>
+                                <hr>
+                                <p class="card-text content ">Content : <span class="font-weight-bold"> <%= result.content %> ...</span></p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <%})  %>
+                </div>
+            </div>
+        </div>
+       
+        
+
+
+        <!-- END CODE HERE -->
+        <%- include('../../partials/foot.ejs')  %>
