@@ -82,7 +82,7 @@ app.get('/', forwardAuthenticated, async (req, res)=> {
        try{
         Data.find((err, result) => { 
             if (!err) { 
-                res.render('notLogin', {
+                res.render('welcome', {
                     title: 'Blog',
                     result: result,
                     count: count,
