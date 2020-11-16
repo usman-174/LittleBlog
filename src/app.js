@@ -18,7 +18,7 @@ require('../config/passport')(passport)
 const Data = require('../models/data')
 // CONNECTING TO MONGO ATLAS
 
-mongoose.connect(url, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify : false })
+mongoose.connect(url, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify : true })
     .then((result) => {
 
         app.listen(port, (req, res) => {
