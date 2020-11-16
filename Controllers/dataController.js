@@ -110,12 +110,13 @@ router.get('/edit/:_id', async (req, res) => {
     })
 })
 
-    router.post('/edit/:_id',  (req, res, next) => {
+
+router.post('/edit/:_id', async (req, res, next) => {
         
-        Req = Data.findById(req.params._id)
+        Req = await Data.findById(req.params._id)
         next()
 
-    },edit('edit'))
+    },edit('data/edit'))
 
 
 
@@ -138,8 +139,8 @@ router.get('/edit/:_id', async (req, res) => {
                 })
 
             } catch (err) {
-                
-                res.render(`${path}`, { result: Data })
+                console.log(err)
+                res.render(`${path}`, { result: Data,title:"Edit Blog" })
 
             }
         }
