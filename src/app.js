@@ -1,4 +1,7 @@
-require('dotenv').config();
+if(process.env.NODE_ENV !== 'production'){
+require("dotenv").config();
+}
+
 const express = require('express')
 const app = express()
 const ejs = require('ejs')
@@ -6,7 +9,7 @@ const path = require('path')
 const flash = require('connect-flash');
 const session = require('cookie-session')
 const mongoose = require('mongoose')
-const url = process.env.DATABASE_URL || 'mongodb://localhost:27017/LittleBlog';
+// const url = process.env.DATABASE_URL || 'mongodb://localhost:27017/LittleBlog';
 const port = process.env.PORT || 8000
 const passport = require('passport')
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
@@ -18,18 +21,17 @@ require('../config/passport')(passport)
 const Data = require('../models/data')
 // CONNECTING TO MONGO ATLAS
 
-mongoose.connect(url, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify : true })
-    .then((result) => {
+mongoose
+  .connect(process.env.DATABASE_URL, {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: true,
+  })
+  const db = mongoose.connection
+  db.on('error', error => console.error(error))
+db.once("open", () => console.log('Connected.'));
 
-        app.listen(port, (req, res) => {
-            console.log('Connected')
-         
-        })
-
-    }).catch((err) => {
-        if (err) throw err
-        
-    }) 
 
 // REQUIRING CONTROLLERS
 
@@ -105,3 +107,6 @@ app.get('*',(req,res)=>{
     res.render('error',{title: 'Page Not Found'})
    
 })
+app.listen(port, (req, res) => {
+  console.log("");
+});
