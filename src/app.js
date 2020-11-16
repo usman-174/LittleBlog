@@ -71,7 +71,7 @@ app.use(express.static(public))
 const templates = path.join(__dirname, '../templates/views')
 app.set('view engine', "ejs")
 app.set('views', templates)
-app.get('/', forwardAuthenticated, async function loggedIn(req, res) {
+app.get('/', forwardAuthenticated, async (req, res)=> {
     
     if (req.user) {
        res.redirect('/data')
@@ -82,7 +82,7 @@ app.get('/', forwardAuthenticated, async function loggedIn(req, res) {
        try{
         Data.find((err, result) => { 
             if (!err) { 
-                res.render('data/notLogin', {
+                res.render('notLogin', {
                     title: 'Blog',
                     result: result,
                     count: count,
