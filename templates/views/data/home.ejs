@@ -33,23 +33,20 @@
         <div class="col-md-4 my-3 mx-2">
           <div class="card Eachbox">
             <div class="card-body">
-              <span
-                style="
-                  color: rgb(153, 146, 147);
-                  font-size: 12px;
-                "
+              <span style="color: rgb(153, 146, 147); font-size: 12px"
                 >Created By :
                 <span style="color: rgb(94, 88, 88); text-transform: uppercase"
                   ><%= result.by %>
                 </span></span
-              ><hr />
+              >
+              <div class="card-subtitle text-muted my-2" style="color: rgb(153, 146, 147); font-size: 12px">
+                Created at : <span style="color: rgb(94, 88, 88); text-transform: uppercase"><%= result.date.toLocaleDateString() %></span>
+              </div>
+              <hr />
               <h2 class="card-title text-success text-uppercase">
                 <%= result.title %>
               </h2>
 
-              <div class="card-subtitle text-muted my-2">
-                <%= result.date.toLocaleDateString() %>
-              </div>
               <p class="card-text body text-left text-dark">
                 " <i><%= result.description %></i> "
               </p>
@@ -61,7 +58,9 @@
               <div class="show mt-3">
                 <% if(result.by == user.name) {%>
                 <div class="show mt-3 d-inline">
-                  <a href="/data/edit/<%= result._id %> " class="btn btn-warning my-2"
+                  <a
+                    href="/data/edit/<%= result._id %> "
+                    class="btn btn-warning my-2"
                     >Edit</a
                   >
                 </div>
